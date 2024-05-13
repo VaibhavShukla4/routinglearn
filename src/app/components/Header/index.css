@@ -1,0 +1,14 @@
+/** @format */
+
+.header > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 35px;
+  font-size: 20px;
+  font-family: cursive;
+  font-weight: 500;
+  cursor: pointer;
+}
