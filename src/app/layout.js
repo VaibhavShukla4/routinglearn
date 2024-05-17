@@ -3,7 +3,6 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from './redux/providers';
-import 'bootstrap/dist/css/bootstrap.min.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
