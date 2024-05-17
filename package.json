@@ -4,22 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next-sitemap",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
-    "axios": "^1.6.7",
     "dotenv": "^16.4.1",
-    "mongodb": "^6.6.1",
     "mongoose": "^8.3.4",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.0.1",
     "react-redux": "^9.1.0",
-    "react-reveal": "^1.2.2",
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {
