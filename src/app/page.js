@@ -1,9 +1,9 @@
 /** @format */
 import dynamic from 'next/dynamic';
-import Pages from '@/app/pages/index';
-
+// import { ToastProvider } from '@/app/contexts/ToastContext/page';
+import NextTopLoader from 'nextjs-toploader';
 // Dynamically import HeavyComponent with a loading placeholder
-const HeavyComponent = dynamic(() => import('@/app/pages'), {
+const HeavyComponent = dynamic(() => import('@/app/pages/index'), {
   loading: () => <p>Loading...</p>,
 });
 
@@ -11,8 +11,10 @@ const HeavyComponent = dynamic(() => import('@/app/pages'), {
 export default function Home() {
   return (
     <main>
-      {/* <Pages /> */}
+      {/* <ToastProvider> */}
+      <NextTopLoader />
       <HeavyComponent />
+      {/* </ToastProvider> */}
     </main>
   );
 }

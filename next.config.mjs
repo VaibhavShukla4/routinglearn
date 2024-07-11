@@ -3,10 +3,15 @@
  * @type {import('next').NextConfig}
  */
 
-const nextConfig = {
-  // images: {
-  //   domains: ['fakestoreapi.com'],
-  // },
+import withBundleAnalyzer from '@next/bundle-analyzer';
+import CompressionPlugin from 'compression-webpack-plugin';
+
+const nextConfig = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})({
+  images: {
+    domains: ['fakestoreapi.com'],
+  },
   async rewrites() {
     return [
       {
@@ -22,8 +27,8 @@ const nextConfig = {
         destination: '/users/contact',
       },
       {
-        source: '/addproduct', // Corrected the syntax here
-        destination: '/users/addproduct', // Corrected the syntax here
+        source: '/addproduct',
+        destination: '/users/addproduct',
       },
       {
         source: '/profile/:id',
@@ -35,6 +40,38 @@ const nextConfig = {
       },
     ];
   },
-};
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.plugins.push(
+        new CompressionPlugin({
+          filename: '[path][base].gz',
+          algorithm: 'gzip',
+          test: /\.(js|css|html|svg)$/,
+          threshold: 10240,
+          minRatio: 0.8,
+        }),
+      );
+
+      config.plugins.push(
+        new CompressionPlugin({
+          filename: '[path][base].br',
+          algorithm: 'brotliCompress',
+          test: /\.(js|css|html|svg)$/,
+          compressionOptions: { level: 11 },
+          threshold: 10240,
+          minRatio: 0.8,
+        }),
+      );
+    }
+    return config;
+  },
+  experimental: {
+    optimizeFonts: true,
+  },
+  http2: {
+    push: true,
+    preload: true,
+  },
+});
 
 export default nextConfig;

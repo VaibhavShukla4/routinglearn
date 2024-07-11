@@ -1,11 +1,12 @@
 /** @format */
 'use client';
+import { useToast } from '@/app/contexts/ToastContext/page';
 import { useState } from 'react';
 
 const AddProductForm = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-
+  const { addToast } = useToast();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const product = { name, price };
@@ -23,6 +24,7 @@ const AddProductForm = () => {
     console.log('Response ---->>>>>>>', response);
     // if (response.ok) {
     console.log('Product added!');
+    addToast('This is a success message!', 'success');
     setName('');
     setPrice('');
     // }

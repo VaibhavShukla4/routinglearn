@@ -5,7 +5,7 @@
 import fs from 'fs';
 import { fetchAllProductIds, fetchProduct } from '@/app/Server/userApi';
 
-const BASE_URL = 'http://localhost:3000/'; // Update with your actual website URL
+const BASE_URL = 'http://localhost:3000'; // Update with your actual website URL
 
 const generateSitemap = async (req, res) => {
   try {

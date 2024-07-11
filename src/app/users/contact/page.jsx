@@ -1,9 +1,17 @@
 /** @format */
 
-import React from 'react';
+async function getProjects() {
+  const res = await fetch(`https://fakestoreapi.com/products`);
+  const projects = await res.json();
 
-const Page = () => {
-  return <div>Contact</div>;
+  return projects;
+}
+const Page = async () => {
+  const projects = await getProjects();
+  console.log(projects);
+  return projects.map((project, index) => (
+    <div key={index}>{project?.title}</div>
+  ));
 };
 
 export default Page;
