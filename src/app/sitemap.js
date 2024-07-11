@@ -9,23 +9,25 @@ const BASE_URL = 'http://localhost:3000'; // Update with your actual website URL
 
 const Page = async (req, res) => {
   try {
-    const productIds = await fetchAllProductIds(); // Fetch all product IDs
+    const productIds = await fetchAllProductIds();
 
-    console.log('productIds ----------->>>>>>>>>>', productIds);
-    // if (!Array.isArray(productIds))
-    //   throw new Error('Expected products to be an array');
+    if (!productIds || !productIds.data || !Array.isArray(productIds.data)) {
+      throw new Error(
+        'Failed to fetch product IDs or data format is incorrect.',
+      );
+    }
 
-    const productUrls = productIds?.data.map(
+    const productUrls = productIds.data.map(
       (item) => `${BASE_URL}/product/${item._id}`,
     );
-    console.log('productUrls ------>>>>>>', productUrls);
+
     const staticRoutes = [
       `${BASE_URL}/`,
       `${BASE_URL}/aboutus`,
       `${BASE_URL}/contact`,
-    ]; // Static URLs
-    const allUrls = [...staticRoutes, ...productUrls]; // Combine all URLs
-    console.log(staticRoutes);
+    ];
+
+    const allUrls = [...staticRoutes, ...productUrls];
 
     const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -43,10 +45,12 @@ const Page = async (req, res) => {
           .join('')}
       </urlset>`;
 
-    fs.writeFileSync('public/sitemap.xml', sitemapContent);
+    fs.writeFileSync('public/sitemap.xml', sitemapContent.trim());
     console.log('Sitemap generated successfully!');
+    res?.status(200).send('Sitemap generated successfully!');
   } catch (error) {
-    console.error('Error generating sitemap:', error);
+    console.error('Error generating sitemap:', error); // Log the specific error
+    res?.status(500).send('Error generating sitemap'); // Respond with an error status
   }
 };
 
