@@ -5,7 +5,7 @@ import Toast from '@/app/components/Toast/page';
 
 const ToastContext = createContext();
 
-export const ToastProvider = ({ children }) => {
+const Page = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const addToast = useCallback((message, type = 'success') => {
@@ -31,6 +31,8 @@ export const ToastProvider = ({ children }) => {
     </ToastContext.Provider>
   );
 };
+
+export default Page;
 
 export const useToast = () => {
   const context = useContext(ToastContext);

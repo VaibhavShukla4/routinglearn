@@ -8,7 +8,6 @@ async function getProjects() {
 }
 const Page = async () => {
   const projects = await getProjects();
-  console.log(projects);
   return projects.map((project, index) => (
     <div key={index}>{project?.title}</div>
   ));

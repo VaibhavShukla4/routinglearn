@@ -2,6 +2,7 @@
 
 import React from 'react';
 
-export const Description = () => {
+const Page = () => {
   return <div>This is decription</div>;
 };
+export default Page;

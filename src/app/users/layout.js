@@ -3,7 +3,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 const HeaderComponent = dynamic(() => import('@/app/components/Header/page'));
-import { ToastProvider } from '@/app/contexts/ToastContext/page';
+const ToastProvider = dynamic(() => import('@/app/contexts/ToastContext/page'));
 const Layout = ({ children }) => {
   // Now you can use the `pathname` variable to get the current URL path
   // console.log('Current URL path:', pathname);

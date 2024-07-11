@@ -1,10 +1,8 @@
 /** @format */
 'use client';
-import { fetchAllProductIds } from '@/app/Server/userApi';
 import { useRouter } from 'next/navigation';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 // import { useRouter } from 'next/router';
-import { Description } from '@/app/components/Description/page';
 const Page = ({ product }) => {
   // const [product, setProduct] = useState([]);
 
@@ -48,9 +46,6 @@ const Page = ({ product }) => {
             ),
           )}
         </ul>
-      </Suspense>
-      <Suspense fallback={<p>Loading.........</p>}>
-        <Description />
       </Suspense>
     </div>
   );
