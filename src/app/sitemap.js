@@ -15,7 +15,7 @@ const generateSitemap = async (req, res) => {
     // if (!Array.isArray(productIds))
     //   throw new Error('Expected products to be an array');
 
-    const productUrls = productIds.data.map(
+    const productUrls = productIds?.data.map(
       (item) => `${BASE_URL}/product/${item._id}`,
     );
     console.log('productUrls ------>>>>>>', productUrls);
